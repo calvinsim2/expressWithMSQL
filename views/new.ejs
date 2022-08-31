@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta charset="utf-8" />
+    <title>Add A New Game</title>
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="icon" type="image/png" href="images/favicon.png" />
+  </head>
+  <body>
+    <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <div class="container">
+      <h1>Add a new Game!</h1>
+      <a href="/api/games/">Back to All Games</a>
+      <form action="/api/games/" method="POST">
+        <!-- name -->
+        <input type="text" name="name" id="name" placeholder="name" />
+        <!-- description -->
+        <input
+          type="text"
+          name="description"
+          id="description"
+          placeholder="description"
+        />
+        <!-- rating -->
+        <input type="text" name="rating" id="rating" placeholder="rating" />
+
+        <!-- submit -->
+        <input type="submit" value="Add New Game!" />
+      </form>
+    </div>
+
+    <!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  </body>
+</html>
