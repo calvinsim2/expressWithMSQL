@@ -38,19 +38,15 @@ router.get("/", (req, res) => {
 
 //Create
 router.post("/", (req, res) => {
-  let name = req.body.name;
-  let description = req.body.description;
-  let rating = Number(req.body.rating);
-
   //(' + date + ',' + pName + '))
   sql.connect(config, (err) => {
     new sql.Request().query(
       "INSERT INTO Game ([GameName], [GameDescription], [GameRating]) VALUES ('" +
-        name +
+        req.body.name +
         "', '" +
-        description +
+        req.body.description +
         "', '" +
-        rating +
+        req.body.rating +
         "')",
 
       (err, result) => {
