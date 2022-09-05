@@ -15,6 +15,8 @@
     "method-override": "^3.0.0",
     "msnodesqlv8": "^2.6.0",
     "mssql": "^9.0.1",
-    "nodemon": "^2.0.19"
+    "nodemon": "^2.0.19",
+    "sequelize": "^6.21.4",
+    "tedious": "^15.1.0"
   }
 }

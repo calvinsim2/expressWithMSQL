@@ -3,16 +3,23 @@ const router = express.Router();
 // let games = require("../models/seedGame.js");
 let games = [];
 router.use(express.urlencoded({ extended: false }));
+const { Sequelize } = require("sequelize");
 
-var sql = require("mssql/msnodesqlv8");
-var config = {
-  connectionString:
-    "Driver=SQL Server;Server=DESKTOP-9DKU259\\SQLEXPRESS;Database=GameDB;Trusted_Connection=true;",
-};
+// var sql = require("mssql/msnodesqlv8");
+// var config = {
+//   connectionString:
+//     "Driver=SQL Server;Server=DESKTOP-9DKU259\\SQLEXPRESS;Database=GameDB;Trusted_Connection=true;",
+// };
+
+const sequelize = new Sequelize("MSLearnDB", "sa", "password", {
+  host: "localhost",
+  port: 53687,
+  dialect: "mssql",
+});
 
 // index
 router.get("/", (req, res) => {
-  sql.connect(config, (err) => {
+  sequelize.connect(config, (err) => {
     new sql.Request().query("SELECT * FROM Game", (err, result) => {
       console.log(".:The Good Place:.");
       if (err) {

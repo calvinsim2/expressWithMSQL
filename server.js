@@ -1,11 +1,20 @@
 const express = require("express");
 const app = express();
+const { Sequelize } = require("sequelize");
 
-var sql = require("mssql/msnodesqlv8");
-var config = {
-  connectionString:
-    "Driver=SQL Server;Server=DESKTOP-9DKU259\\SQLEXPRESS;Database=GameDB;Trusted_Connection=true;",
-};
+const sequelize = new Sequelize("MSLearnDB", "sa", "password", {
+  host: "localhost",
+  port: 53687,
+  dialect: "mssql",
+});
+
+try {
+  sequelize.authenticate();
+  console.log("Connection has been established successfully.");
+} catch (error) {
+  console.error("Unable to connect to the database:", error);
+}
+
 // // for create and update. Body Parser
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static("public")); // for public
