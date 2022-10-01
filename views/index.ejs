@@ -14,7 +14,9 @@
     <div class="container">
       <% for (let game = 0; game < allGames.length; game++) { %>
       <div class="game-all">
-        <h3><%= allGames[game].GameName %></h3>
+        <a href="/api/games/<%= allGames[game].dataValues.id %>"
+          ><%= allGames[game].dataValues.name %></a
+        >
       </div>
       <% } %>
     </div>

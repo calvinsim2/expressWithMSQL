@@ -15,8 +15,6 @@ try {
   console.error("Unable to connect to the database:", error);
 }
 
-const User = require("./models/User")(sequelize, DataTypes);
-
 (async () => {
   await sequelize.sync();
 })();
@@ -28,12 +26,8 @@ app.use(express.static("public")); // for public
 const methodOverride = require("method-override");
 app.use(methodOverride("_method"));
 
-// const gameController = require("./controllers/gameController");
-// app.use("/api/games", gameController);
-
-app.get("/", async (req, res) => {
-  const jane = await User.create({ name: "Jane" });
-});
+const gameController = require("./controllers/gameController");
+app.use("/api/games", gameController);
 
 app.listen(3500, () => {
   console.log("Start liao!");
