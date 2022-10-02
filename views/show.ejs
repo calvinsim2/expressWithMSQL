@@ -4,7 +4,7 @@
     <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <meta charset="utf-8" />
-    <title><%= eachGame.GameName %></title>
+    <title><%= eachGame.name %></title>
     <meta name="description" content="" />
     <meta name="author" content="" />
 
@@ -22,7 +22,9 @@
     <div class="container">
       <h1><%= eachGame.name %></h1>
       <a href="/api/games/">Return to All Games</a>
+      <a href="/api/games/edit/<%=eachGame.id%>/">Edit Game Details</a>
       <p><%= eachGame.description %></p>
+      <p><%= eachGame.rating %></p>
       <form action="/api/games/<%= eachGame.id %>?_method=DELETE" method="POST">
         <input type="submit" value="DELETE GAME" />
       </form>

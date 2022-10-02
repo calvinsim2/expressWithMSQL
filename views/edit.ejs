@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Edit <%= eachGame.name %></title>
+  </head>
+  <body>
+    <h1>Edit Game Page</h1>
+    <nav>
+      <a href="/api/games/<%=eachGame.id%>/">Back to Game's Detail</a>
+    </nav>
+
+    <form action="/api/games/<%=eachGame.id%>?_method=PUT" method="POST">
+      <!--  NOTE: the form is pre-populated with values for the server-->
+      Name:
+      <input type="text" name="name" value="<%=eachGame.name%>" /><br />
+      Description:
+      <input
+        type="text"
+        name="description"
+        value="<%=eachGame.description%>"
+      /><br />
+      Rating:
+      <input type="text" name="rating" value="<%=eachGame.rating%>" /><br />
+
+      <input type="submit" value="Submit Changes" />
+    </form>
+  </body>
+</html>

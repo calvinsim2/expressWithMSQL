@@ -49,6 +49,34 @@ router.get("/new", (req, res) => {
   res.render("new.ejs");
 });
 
+// Edit
+router.get("/edit/:pk/", async (req, res) => {
+  const singleGame = await Game.findByPk(req.params.pk);
+  console.log(singleGame);
+  res.render("edit.ejs", {
+    eachGame: singleGame.dataValues,
+    id: singleGame.dataValues.pk,
+  });
+});
+
+// PUT
+
+router.put("/:index", async (req, res) => {
+  await Game.update(
+    {
+      name: req.body.name,
+      description: req.body.description,
+      rating: req.body.rating,
+    },
+    {
+      where: {
+        id: req.params.index,
+      },
+    }
+  );
+  res.redirect("/api/games/");
+});
+
 // Delete
 
 router.delete("/:index", async (req, res) => {
