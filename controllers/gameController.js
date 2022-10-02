@@ -16,23 +16,53 @@ const Game = require("../models/Game")(sequelize, DataTypes);
 
 router.get("/seed", async (req, res) => {
   // create - a combination of build and save.
-  const addGame = await Game.create({
+  await Game.create({
     name: "L4D2",
     description: "A FPS Zombie shooting coop game",
     rating: 4,
   });
-  const addGame2 = await Game.create({
+  await Game.create({
     name: "DotA2",
     description: "A MOBA game",
     rating: 5,
   });
+
+  console.log("Game seeded!");
+  res.redirect("/api/games/");
+});
+
+//Create
+router.post("/", async (req, res) => {
+  await Game.create({
+    name: req.body.name,
+    description: req.body.description,
+    rating: req.body.rating,
+  });
+
+  console.log("Game added!");
+  res.redirect("/api/games/");
+});
+
+// New
+
+router.get("/new", (req, res) => {
+  res.render("new.ejs");
+});
+
+// Delete
+
+router.delete("/:index", async (req, res) => {
+  await Game.destroy({
+    where: {
+      id: req.params.index,
+    },
+  });
+  res.redirect("/api/games/");
 });
 
 router.get("/:pk", async (req, res) => {
   // create - a combination of build and save.
   const singleGame = await Game.findByPk(req.params.pk);
-  console.log(singleGame);
-  console.log(singleGame.dataValues);
   res.render("show.ejs", {
     eachGame: singleGame.dataValues,
     id: singleGame.dataValues.pk,
@@ -42,8 +72,6 @@ router.get("/:pk", async (req, res) => {
 router.get("/", async (req, res) => {
   // create - a combination of build and save.
   const games = await Game.findAll();
-  console.log(games);
-  console.log(games[0].dataValues);
   // console.log("All games:", JSON.stringify(games, null, 2));
 
   res.render("index.ejs", {

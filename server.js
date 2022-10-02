@@ -29,6 +29,9 @@ app.use(methodOverride("_method"));
 const gameController = require("./controllers/gameController");
 app.use("/api/games", gameController);
 
+app.get("/", (req, res) => {
+  res.redirect("/api/games/");
+});
 app.listen(3500, () => {
   console.log("Start liao!");
   console.log("http://localhost:3500/");

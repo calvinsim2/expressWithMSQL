@@ -3,7 +3,7 @@ module.exports = function (sequelize, DataTypes) {
     name: DataTypes.TEXT,
     description: DataTypes.TEXT,
     rating: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.DECIMAL,
       defaultValue: 0,
     },
   });
